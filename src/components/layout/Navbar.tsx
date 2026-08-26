@@ -34,6 +34,13 @@ export const Navbar: React.FC = () => {
     };
   }, [mobileMenuOpen]);
 
+  // Derive monogram from brandName e.g. "PAIR OFF" -> "PO"
+  const monogram = siteConfig.brandName
+    .split(' ')
+    .map((w) => w[0])
+    .join('')
+    .substring(0, 2);
+
   return (
     <header
       className={clsx(
@@ -50,7 +57,7 @@ export const Navbar: React.FC = () => {
           aria-label={`${siteConfig.brandName} Home`}
         >
           <div className="w-7 h-7 rounded-sm border border-champagne-500/40 bg-studio-900 flex items-center justify-center text-champagne-300 font-display font-bold text-xs tracking-wider group-hover:border-champagne-500 transition-colors">
-            YS
+            {monogram}
           </div>
           <span className="font-display font-semibold text-lg sm:text-xl tracking-wider text-studio-50 uppercase group-hover:text-champagne-200 transition-colors">
             {siteConfig.brandName}

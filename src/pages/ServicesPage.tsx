@@ -12,7 +12,7 @@ export const ServicesPage: React.FC = () => {
     <>
       <SEOHead
         title="Services"
-        description="Explore the 6 core digital engineering and design services provided by YOUR STUDIO."
+        description={`Explore the 6 core digital engineering and design services provided by ${siteConfig.brandName}.`}
       />
 
       <div className="py-16 sm:py-24 max-w-7xl mx-auto px-6 sm:px-8">

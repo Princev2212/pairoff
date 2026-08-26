@@ -1,5 +1,6 @@
 import React from 'react';
 import { projects } from '../data/projects';
+import { siteConfig } from '../config/siteConfig';
 import { SEOHead } from '../components/ui/SEOHead';
 import { ProjectCard } from '../components/ui/ProjectCard';
 import { Button } from '../components/ui/Button';
@@ -10,7 +11,7 @@ export const WorkPage: React.FC = () => {
     <>
       <SEOHead
         title="Selected Work"
-        description="Explore selected digital experiences and web platforms designed and engineered by YOUR STUDIO."
+        description={`Explore selected digital experiences and web platforms designed and engineered by ${siteConfig.brandName}.`}
       />
 
       <div className="py-16 sm:py-24 max-w-7xl mx-auto px-6 sm:px-8">

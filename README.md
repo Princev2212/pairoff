@@ -1,20 +1,20 @@
-# YOUR STUDIO — Premium Digital Studio Portfolio & Website
+# PAIR OFF — Premium Digital Studio Portfolio & Website
 
-A complete, production-grade website for an independent two-person creative technology and web engineering studio.
+A complete, production-grade website for the independent two-person creative technology and web engineering studio **PAIR OFF**.
 
 > **Design Philosophy**: Quiet Luxury × Premium Digital Studio × Minimal 3D.
 > Built with React, TypeScript, Tailwind CSS, Three.js / WebGL, and modern web standards.
 
 ---
 
-## 🏛️ Brand Name Centralization
+## 🏛️ Centralized Brand Configuration
 
-The studio brand name is centralized in a single configuration file:
+The studio brand name is centralized in:
 **[`src/config/siteConfig.ts`](./src/config/siteConfig.ts)**
 
 ```typescript
 export const siteConfig: SiteConfig = {
-  brandName: "YOUR STUDIO", // <-- Change this single variable to update the brand everywhere
+  brandName: "PAIR OFF",
   tagline: "Digital experiences built with intent.",
   email: "hello@example.com",
   phone: "+91 63631 94621",
@@ -22,15 +22,6 @@ export const siteConfig: SiteConfig = {
   ...
 };
 ```
-
-Changing `brandName` automatically cascades across:
-- Top Navigation wordmark & branding
-- Browser document titles and OpenGraph metadata
-- Hero section and microcopy
-- Selected work showcases and case studies
-- Services, Approach, and Manifesto sections
-- Contact form and direct communication cards
-- Global footer and copyright notices
 
 ---
 
@@ -60,7 +51,7 @@ Changing `brandName` automatically cascades across:
 - **Styling**: Tailwind CSS + Custom Quiet Luxury Design Tokens
 - **3D Engine**: Three.js WebGL with subtle mouse parallax and `prefers-reduced-motion` detection
 - **Icons**: Lucide React
-- **Routing**: React Router (DOM) with code splitting & lazy loading
+- **Routing**: React Router with code splitting & lazy loading
 
 ---
 

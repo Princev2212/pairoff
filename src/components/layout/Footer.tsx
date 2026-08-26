@@ -6,6 +6,13 @@ import { Phone, ArrowUpRight } from 'lucide-react';
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
+  // Derive monogram from brandName e.g. "PAIR OFF" -> "PO"
+  const monogram = siteConfig.brandName
+    .split(' ')
+    .map((w) => w[0])
+    .join('')
+    .substring(0, 2);
+
   return (
     <footer className="border-t border-studio-800/80 bg-studio-950 text-studio-300 pt-16 sm:pt-20 pb-12">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
@@ -15,7 +22,7 @@ export const Footer: React.FC = () => {
             <Link to="/" className="inline-block group focus-visible:outline-none">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-sm border border-champagne-500/40 bg-studio-900 flex items-center justify-center text-champagne-300 font-display font-bold text-xs">
-                  YS
+                  {monogram}
                 </div>
                 <span className="font-display font-semibold text-xl tracking-wider text-studio-50 uppercase group-hover:text-champagne-200 transition-colors">
                   {siteConfig.brandName}

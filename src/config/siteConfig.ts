@@ -1,19 +1,23 @@
 import type { SiteConfig } from '../types';
 
 export const siteConfig: SiteConfig = {
-  brandName: "YOUR STUDIO",
+  // Centralized brand name - PAIR OFF
+  brandName: "PAIR OFF",
   tagline: "Digital experiences built with intent.",
-  shortDescription: "YOUR STUDIO creates thoughtful websites and digital experiences for businesses that want to be taken seriously online.",
+  shortDescription: "PAIR OFF creates thoughtful websites and digital experiences for businesses that want to be taken seriously online.",
   email: "hello@example.com",
   phone: "+91 63631 94621",
   
+  // WhatsApp primary contact (Manjunath)
   whatsappNumberRaw: "916363194621",
   whatsappUrl: "https://wa.me/916363194621",
   whatsappLabel: "Chat With Us",
 
-  metaTitleDefault: "YOUR STUDIO | Digital Experiences",
-  metaDescriptionDefault: "YOUR STUDIO creates thoughtful websites and digital experiences for businesses that want to be taken seriously online.",
+  // Global SEO defaults
+  metaTitleDefault: "PAIR OFF | Digital Experiences",
+  metaDescriptionDefault: "PAIR OFF creates thoughtful websites and digital experiences for businesses that want to be taken seriously online.",
 
+  // Co-Founders configuration
   founders: [
     {
       name: "Manjunath",
@@ -37,6 +41,7 @@ export const siteConfig: SiteConfig = {
     }
   ],
 
+  // Real technologies utilized
   techStack: [
     "React",
     "TypeScript",
@@ -47,6 +52,7 @@ export const siteConfig: SiteConfig = {
     "Vercel"
   ],
 
+  // Configurable social placeholders
   socialLinks: [
     { label: "GitHub", href: "https://github.com" },
     { label: "LinkedIn", href: "https://linkedin.com" },
