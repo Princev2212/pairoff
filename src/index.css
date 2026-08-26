@@ -1,0 +1,80 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #070709;
+    color: #E4E3EA;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #070709;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #191921;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3D3D4E;
+  }
+
+  /* Accessible focus states */
+  *:focus-visible {
+    outline: 1px solid #C8B89A;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .border-hairline {
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+
+  .border-champagne-hairline {
+    border-color: rgba(200, 184, 154, 0.2);
+  }
+
+  .bg-subtle-radial {
+    background: radial-gradient(circle at 50% 0%, rgba(200, 184, 154, 0.04) 0%, transparent 70%);
+  }
+
+  .bg-studio-scrim {
+    background: linear-gradient(180deg, rgba(7, 7, 9, 0.85) 0%, rgba(7, 7, 9, 0.98) 100%);
+  }
+
+  .bg-card-gradient {
+    background: linear-gradient(180deg, rgba(18, 18, 23, 0.8) 0%, rgba(12, 12, 15, 0.95) 100%);
+  }
+
+  .glow-subtle {
+    box-shadow: 0 0 40px -10px rgba(200, 184, 154, 0.08);
+  }
+}
+
+/* Reduced Motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
