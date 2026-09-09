@@ -1,83 +1,166 @@
-export interface Founder {
+export type Sex = 'male' | 'female';
+
+export type ActivityLevel = 'sedentary' | 'light' | 'moderate' | 'very_active' | 'extremely_active';
+
+export type WeightGoalType = 'lean_bulk' | 'general_gain';
+
+export type MealType = 'breakfast' | 'lunch' | 'snacks' | 'dinner';
+
+export interface UserProfile {
   name: string;
-  role: string;
-  phone: string;
-  phoneRaw: string;
-  telHref: string;
-  isPrimary: boolean;
-  bio?: string;
-  initials: string;
+  age: number;
+  sex: Sex;
+  heightCm: number;
+  currentWeightKg: number;
+  targetWeightKg: number;
+  activityLevel: ActivityLevel;
+  workoutDaysPerWeek: number;
+  goalType: WeightGoalType;
+  proteinGramsPerKg: number; // default 1.6
+  customCalorieAdjustment?: number; // optional manual override
+  isOnboarded: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface SocialLink {
-  label: string;
-  href: string;
+export interface NutritionTarget {
+  bmr: number;
+  tdee: number;
+  targetCalories: number;
+  surplusCalories: number;
+  proteinGrams: number;
+  fatGrams: number;
+  carbGrams: number;
+  proteinCalories: number;
+  fatCalories: number;
+  carbCalories: number;
+  targetWeeklyGainKgMin: number;
+  targetWeeklyGainKgMax: number;
+  targetWeeklyGainPercentMin: number; // e.g. 0.25%
+  targetWeeklyGainPercentMax: number; // e.g. 0.50%
 }
 
-export interface SiteConfig {
-  brandName: string;
-  tagline: string;
-  shortDescription: string;
-  email: string;
-  phone: string;
-  whatsappNumberRaw: string;
-  whatsappUrl: string;
-  whatsappLabel: string;
-  metaTitleDefault: string;
-  metaDescriptionDefault: string;
-  founders: Founder[];
-  techStack: string[];
-  socialLinks: SocialLink[];
-}
-
-export interface Project {
+export interface FoodItem {
   id: string;
-  number: string;
   name: string;
-  category: string;
-  tagline: string;
-  description: string;
-  liveUrl: string;
-  route: string;
-  isFeatured: boolean;
-  challenge: string;
-  approach: string;
-  approachPoints: string[];
-  result: string;
-  technologies: string[];
-  metricsContext: string;
-  architectureHighlights: {
-    title: string;
-    description: string;
-  }[];
-  mockup: {
-    heroImage: string;
-    accentColor: string;
-    mockupType: 'browser' | 'split';
-  };
+  category: 'grains' | 'protein' | 'dairy' | 'vegetables' | 'fruits' | 'nuts_fats' | 'meals' | 'snacks' | 'shakes' | 'other';
+  servingSizeGrams: number;
+  servingUnit: string; // e.g. "1 bowl (150g)", "1 piece (40g)", "100g"
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  fiber?: number;
+  isIndian?: boolean;
+  notes?: string;
 }
 
-export interface ServiceItem {
-  number: string;
+export interface FoodEntry {
+  id: string;
+  mealType: MealType;
+  foodName: string;
+  quantityGrams: number;
+  servingLabel: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  isEstimated?: boolean;
+  confidenceScore?: number;
+  loggedAt: string; // ISO string
+  imageUrl?: string;
+}
+
+export interface Meal {
+  type: MealType;
+  entries: FoodEntry[];
+  totalCalories: number;
+  totalProtein: number;
+  totalCarbs: number;
+  totalFat: number;
+}
+
+export interface DailyNutrition {
+  date: string; // YYYY-MM-DD
+  meals: Record<MealType, FoodEntry[]>;
+  totalCalories: number;
+  totalProtein: number;
+  totalCarbs: number;
+  totalFat: number;
+  waterIntakeMl?: number;
+}
+
+export interface WeightEntry {
+  id: string;
+  date: string; // YYYY-MM-DD
+  weightKg: number;
+  notes?: string;
+  timeOfDay?: 'morning' | 'afternoon' | 'evening';
+  isFasted?: boolean;
+  createdAt: string;
+}
+
+export interface WeightTrendPoint {
+  date: string;
+  weightKg: number;
+  movingAverage7Day?: number;
+  targetWeightKg: number;
+  formattedDate: string;
+}
+
+export type TrendStatus = 'below_target' | 'on_track' | 'above_target' | 'insufficient_data';
+
+export interface WeightTrendEvaluation {
+  currentWeightKg: number;
+  startingWeightKg: number;
+  targetWeightKg: number;
+  totalGainedKg: number;
+  remainingKg: number;
+  progressPercentage: number;
+  current7DayAverageKg: number | null;
+  previous7DayAverageKg: number | null;
+  weeklyChangeKg: number | null;
+  weeklyChangePercent: number | null;
+  status: TrendStatus;
+  statusHeadline: string;
+  recommendation: string;
+  suggestedCalorieAdjustment: number; // e.g. +150, 0, -100
+  confidence: 'high' | 'medium' | 'low';
+}
+
+export interface CoachInsight {
+  id: string;
+  type: 'calorie_surplus' | 'protein_pacing' | 'weight_trend' | 'meal_timing' | 'density_tip';
+  priority: 'high' | 'medium' | 'low';
   title: string;
-  tagline: string;
-  description: string;
-  details: string[];
-}
-
-export interface ProcessItem {
-  number: string;
-  title: string;
-  summary: string;
-  description: string;
-  outcomes: string[];
-}
-
-export interface ContactFormData {
-  name: string;
-  business: string;
-  email: string;
-  phone: string;
-  serviceType: string;
   message: string;
+  metric?: string;
+  actionLabel?: string;
+  actionRoute?: string;
+}
+
+export interface DetectedFoodItem {
+  id: string;
+  name: string;
+  quantityGrams: number;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  confidence: number; // 0-1
+  bbox?: { x: number; y: number; width: number; height: number }; // relative 0-100%
+  category: string;
+}
+
+export interface FoodAnalysisResult {
+  imageUrl: string;
+  items: DetectedFoodItem[];
+  totalCalories: number;
+  totalProtein: number;
+  totalCarbs: number;
+  totalFat: number;
+  mealTypeSuggestion: MealType;
+  overallConfidence: number; // 0-1
+  uncertaintyNotes: string[];
+  analyzedAt: string;
 }
